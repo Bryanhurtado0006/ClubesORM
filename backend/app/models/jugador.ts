@@ -29,9 +29,13 @@ export default class Jugador extends BaseModel {
     foreignKey: 'cod_dem',
   })
   declare demarcacion: BelongsTo<typeof Demarcacion>
-  @column.dateTime({ autoCreate: true })
-  declare createdAt: DateTime
 
-  @column.dateTime({ autoCreate: true, autoUpdate: true })
-  declare updatedAt: DateTime
+
+  @column.dateTime({ columnName: 'created_at', autoCreate: true })
+declare createdAt: DateTime
+
+@column.dateTime({ columnName: 'updated_at', autoCreate: true, autoUpdate: true })
+declare updatedAt: DateTime
+
+
 }

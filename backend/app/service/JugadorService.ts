@@ -1,4 +1,6 @@
 import Jugador from '../models/jugador.ts'
+import db from '@adonisjs/lucid/services/db'
+
 
 export default class JugadorService {
   async crear(datos) {
@@ -72,6 +74,43 @@ export default class JugadorService {
 }
 
 
+
+/**
+   * Devuelve la cantidad total de jugadores por club
+   *  y cualquier otra agregación que necesites.
+   */
+
+async contarPorClub() {
+    return await db
+      .from('jugadors')
+      .select('club')
+      .count('* as total_jugadores')
+      .groupBy('club')
+  }
+
+
+  async listarJugadoresConRelaciones() {
+  return await Jugador.query()
+    .preload('pais')           // ← Eager loading de país
+    .preload('demarcacion')    // ← Eager loading de demarcación
+}
+
+
+async listarNombreYDorsal() {
+  return await Jugador.query()
+    .select('jugador', 'dorsal') 
+
+}
+
+/*
+use el modelo Jugador.
+
+se hizo una consulta con query().
+
+aplique .select(...) para limitar los campos a jugador y dorsal.
+
+ evita que lucid traiga campos innecesarios como createdAt, updatedAt, CodPais
+*/
 
 
 }

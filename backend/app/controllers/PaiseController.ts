@@ -61,4 +61,16 @@ export default class PaiseController {
       return response.json({ error: error.message })
     }
   }
+
+
+  async paisesPaginados({ request, response }) {
+    try {
+      const page = request.input('page', 1)
+      const limit = 5
+      const data = await paisService.paisesConJugadores(page, limit) // ← usar paisService aquí
+      return response.json(data)
+    } catch (error) {
+      return response.status(500).json({ error: error.message })
+    }
+  }
 }

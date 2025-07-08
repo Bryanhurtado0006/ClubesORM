@@ -78,6 +78,47 @@ async listarConClubYPais({ response }) {
 
 
 
+async estadisticasPorClub({ response }) {
+    try {
+      const datos = await this.service.contarPorClub()
+      return response.json({ datos })
+    } catch (error) {
+      return response.status(500).json({ error: error.message })
+    }
+  }
+
+  
+
+  async listarConRelaciones({ response }) {
+  try {
+    const datos = await this.service.listarJugadoresConRelaciones()
+    return response.json({ datos })
+  } catch (error) {
+    return response.status(500).json({ error: error.message })
+  }
+}
+
+async jugadoresNombreYDorsal({ response }) {
+  try {
+    const datos = await this.service.listarNombreYDorsal()
+    return response.json({ datos })
+  } catch (error) {
+    return response.status(500).json({ error: error.message })
+  }
+}
+/** 
+   método jugadoresNombreYDorsal que:
+
+Llama al metodo del servicio (listarNombreYDorsal).
+
+Devuelve el resultado en formato json.
+
+ try/catch para manejar errores de forma limpia. 
+
+*/
+
+
+
 
 }
 

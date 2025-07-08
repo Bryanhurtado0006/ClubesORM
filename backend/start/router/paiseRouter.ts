@@ -3,6 +3,10 @@ import PaiseController from "../../app/controllers/PaiseController.js";
 
 const pais = new PaiseController()
 
+Route.get('/pais/paginado', async (ctx) => pais.paisesPaginados(ctx))
+//http://localhost:3333/pais/paginado?page=1
+
+
 Route.post('/pais', pais.crear)
 Route.get('/pais', pais.mostrar)
 Route.get('/pais/:CodPais', pais.buscar)

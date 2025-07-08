@@ -6,6 +6,11 @@ const jugador = new JugadorController()
 //rutas especificas
 Route.get('/jugadores/pais/:id', async (ctx) => jugador.listarPorPais(ctx))
 Route.get('/jugadores/detallado', async (ctx) => jugador.listarConClubYPais(ctx))
+Route.get('/jugadores/estadisticas', async (ctx) => jugador.estadisticasPorClub(ctx))
+Route.get('/jugadores/relaciones', async (ctx) => jugador.listarConRelaciones(ctx))
+Route.get('/jugadores/nombre-dorsal', async (ctx) => jugador.jugadoresNombreYDorsal(ctx))
+
+
 
 
 //crud dinamico

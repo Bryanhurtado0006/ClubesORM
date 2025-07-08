@@ -37,4 +37,12 @@ export default class PaiseService {
     const resultado = await Paise.query().count('* as total')
     return resultado[0].$extras.total
   }
+
+
+  async paisesConJugadores(page: number, limit: number) {
+  return await Paise.query()
+    .preload('jugadores') // Carga todos los jugadores relacionados
+    .paginate(page, limit) // Limita la cantidad de países por página
+}
+
 }
