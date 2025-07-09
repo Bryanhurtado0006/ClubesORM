@@ -9,6 +9,7 @@ Route.get('/jugadores/detallado', async (ctx) => jugador.listarConClubYPais(ctx)
 Route.get('/jugadores/estadisticas', async (ctx) => jugador.estadisticasPorClub(ctx))
 Route.get('/jugadores/relaciones', async (ctx) => jugador.listarConRelaciones(ctx))
 Route.get('/jugadores/nombre-dorsal', async (ctx) => jugador.jugadoresNombreYDorsal(ctx))
+Route.get('jugadores/paginado',async(ctx) =>jugador.paginacion(ctx))
 
 
 

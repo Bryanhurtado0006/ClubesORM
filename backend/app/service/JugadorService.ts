@@ -113,4 +113,14 @@ aplique .select(...) para limitar los campos a jugador y dorsal.
 */
 
 
+async paginarJugadores(page:number,limit:number){
+
+  return await Jugador.query()
+  .select('jugador','club','dorsal')
+  .orderBy('jugador','asc')
+  .paginate(page,limit)
+}
+
+
+
 }

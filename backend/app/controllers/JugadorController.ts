@@ -117,6 +117,16 @@ Devuelve el resultado en formato json.
 
 */
 
+async paginacion({request,response}){
+  const page=request.input('page',1)
+  const limit=10
+  const data = await this.service.paginarJugadores(page,limit)
+  return response.json(data)
+}
+
+
+
+
 
 
 
