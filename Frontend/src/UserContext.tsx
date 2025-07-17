@@ -1,34 +1,34 @@
-import { createContext,useContext,useState, type ReactNode } from "react";
+import React, { createContext, useContext, useState, ReactNode } from "react";
 
 
+// Tipado del contexto
+type UserContextType = {
+  nombre: string;
+  setNombre: (nombre: string) => void;
+};
 
-//variables globales 
-type UserContextType={
-    nombre:string;
-    setNombre:(nuevonombre:string)
-}
+// Crear el contexto con valores por defecto (pueden ser falsos pero del tipo correcto)
+const UserContext = createContext<UserContextType>({
+  nombre: '',
+  setNombre: () => {},
+});
 
+// Provider
+export const UserProvider = ({ children }: { children: ReactNode }) => {
+  const [nombre, setNombre] = useState('');
 
-//crear contexto
-const UserContext=createContext<UserContextType>
+  return (
+    <UserContext.Provider value={{ nombre, setNombre }}>
+      {children}
 
-//provider = toma las rutas 
-export const UserProvider=({children}:{children:ReactNode})=>{
-    const [nombre,setNombre]=useState('')
-    return(
-
-        <UserContext.Provider value= [{nombre,setnombre}]>
-            {children}
-        </UserContext.Provider>
-
-    )
-    }
-
-    //uso de contexto
-    export const UserUser=()=>{
-        const context=useContext(UserContext);
-        return context
     
-    }
+    </UserContext.Provider>
+  );
+};
 
-export default UserContext
+// Hook personalizado para usar el contexto
+export const UseUser = () => {
+  return useContext(UserContext);
+};
+
+export default UserContext;
